@@ -15,6 +15,13 @@ module.exports = function(grunt){
         run: true
       }
     },
+    sass: {
+      dist: {
+        files: {
+          'app/assets/styles/main.css': 'app/assets/styles/sass/main.scss'
+        }
+      }
+    },
     coffee: {
       app: {
         files: [
@@ -69,7 +76,8 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-mocha');
 
-  grunt.registerTask('default', ['coffee', 'livereload-start', 'connect', 'regarde', 'mocha']);
+  grunt.registerTask('default', ['coffee', 'livereload-start', 'connect', 'regarde', 'mocha', 'sass']);
 };
