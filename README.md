@@ -1,1 +1,1 @@
-## Directory and file template for building JavaScript web apps.
+### Directory and file template for building JavaScript web apps.
