@@ -4,22 +4,15 @@ requirejs.config({
   paths: {
     lib: 'lib'
     app: 'app'
+    jquery: 'lib/jquery'
+    underscore: 'lib/underscore'
   }
 
   shim: {
-    'jquery': {
-      exports: '$'
-    },
     'underscore': {
       exports: '_'
     }
   }
 })
 
-requirejs([
-  'lib/domReady',
-  'lib/jquery',
-  'lib/underscore',
-  'app/module',
-  'app/application'
-])
+requirejs ['app/application']
