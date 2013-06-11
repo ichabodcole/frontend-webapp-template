@@ -1,21 +1,20 @@
 {
-  "name": "jsapp",
-  "version": "0.1.2",
+  "name": "frontend-webapp",
+  "version": "0.2.0",
   "description": "Template for JavaScrip Web Apps",
-  "main": "index.js",
+  "main": "app/assets/js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",
   "keywords": [
-    "fun"
+    "fun", "template"
   ],
-  "author": "Cole",
+  "author": "Cole Reed",
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-livereload": "~0.1.2",
-    "grunt-contrib-watch": "~0.3.1",
     "grunt-contrib-connect": "~0.3.0",
     "grunt-regarde": "~0.1.1",
     "grunt-contrib-uglify": "~0.2.0",
