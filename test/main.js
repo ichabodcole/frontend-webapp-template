@@ -2,12 +2,12 @@
     baseUrl: '../',
 
     paths: {
-      jquery: 'app/assets/js/lib/jquery',
-      underscore: 'app/assets/js/lib/underscore',
-
       lib: 'app/assets/js/lib',
       app: 'app/assets/js/app',
       spec: 'test/spec',
+
+      jquery: 'app/assets/js/lib/jquery',
+      underscore: 'app/assets/js/lib/underscore',
 
       chai: 'node_modules/chai/chai',
       mocha: 'node_modules/mocha/mocha',
