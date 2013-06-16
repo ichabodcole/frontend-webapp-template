@@ -12,7 +12,7 @@ module.exports = function(grunt){
       all: ['test/**/*.html'],
       options: {
         reporter: 'Nyan',
-        run: true
+        run: false
       }
     },
     sass: {
@@ -28,8 +28,20 @@ module.exports = function(grunt){
           {
             expand: true,
             cwd: 'app/assets/js/coffee',
-            src: ['**/*.coffee'],
+            src: ['app/**/*.coffee'],
             dest: 'app/assets/js',
+            ext: '.js'
+          }
+        ]
+      },
+
+      test: {
+        files: [
+          {
+            expand: true,
+            cwd: 'test/spec/coffee',
+            src: ['**/*.coffee'],
+            dest: 'test/spec',
             ext: '.js'
           }
         ]
@@ -40,16 +52,20 @@ module.exports = function(grunt){
         files: ['app/**/*.html', 'app/**/*.css', 'app/**/*.js'],
         tasks: ['livereload']
       },
-      compile: {
-        files: ['**/*.coffee'],
-        tasks: ['coffee']
+      compile_app: {
+        files: ['app/**/*.coffee'],
+        tasks: ['coffee:app']
+      },
+      compile_test: {
+        files: ['test/**/*.coffee'],
+        tasks: ['coffee:test']
       },
       sass: {
         files: ['**/*.scss'],
         tasks: ['sass']
       },
       test: {
-        files: ['test/spec/*.js'],
+        files: ['test/**/*.js', 'test/*.html'],
         tasks: ['mocha', 'livereload']
       }
     },

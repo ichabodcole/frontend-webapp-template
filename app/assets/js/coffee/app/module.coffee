@@ -5,5 +5,6 @@ define ->
 
     sayHello: ->
       console.log @helloMessage
+      return @helloMessage
 
   return MyModule
