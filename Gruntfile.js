@@ -18,7 +18,7 @@ module.exports = function(grunt){
     sass: {
       dist: {
         files: {
-          'app/assets/styles/main.css': 'app/assets/styles/sass/main.scss'
+          'app/styles/main.css': 'app/styles/sass/main.scss'
         }
       }
     },
@@ -27,9 +27,9 @@ module.exports = function(grunt){
         files: [
           {
             expand: true,
-            cwd: 'app/assets/js/coffee',
-            src: ['app/**/*.coffee'],
-            dest: 'app/assets/js',
+            cwd: 'app/js/coffee',
+            src: ['**/*.coffee'],
+            dest: 'app/js',
             ext: '.js'
           }
         ]
@@ -46,10 +46,18 @@ module.exports = function(grunt){
         ]
       }
     },
-    regarde: {
+    watch: {
       livereload: {
-        files: ['app/**/*.html', 'app/**/*.css', 'app/**/*.js'],
-        tasks: ['livereload']
+        files: [
+          'app/**/*.html',
+          'app/**/*.css',
+          'app/**/*.js',
+          'test/**/*.html',
+          'test/**/*.js'
+        ],
+        options: {
+          livereload: true
+        }
       },
       compile_app: {
         files: ['app/**/*.coffee'],
@@ -65,7 +73,7 @@ module.exports = function(grunt){
       },
       test: {
         files: ['test/**/*.js', 'test/*.html'],
-        tasks: ['mocha', 'livereload']
+        tasks: ['mocha']
       }
     },
     connect: {
@@ -91,12 +99,11 @@ module.exports = function(grunt){
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-regarde');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-mocha');
 
-  grunt.registerTask('default', ['coffee', 'livereload-start', 'connect', 'regarde', 'mocha', 'sass']);
+  grunt.registerTask('default', ['coffee', 'connect', 'watch', 'mocha', 'sass']);
 };
