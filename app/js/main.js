@@ -1,14 +1,13 @@
 (function() {
   requirejs.config({
-    baseUrl: 'assets/js',
+    baseUrl: './',
     paths: {
-      lib: 'lib',
-      app: 'app',
-      jquery: 'lib/jquery',
-      underscore: 'lib/underscore'
+      app: 'js/app',
+      jquery: '../../components/jquery/jquery',
+      underscore: '../../components/underscore/underscore'
     },
     shim: {
-      'underscore': {
+      underscore: {
         exports: '_'
       }
     }

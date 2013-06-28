@@ -1,5 +1,5 @@
 var path = require('path');
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var lrSnippet = require('connect-livereload')();
 
 var folderMount = function folderMount(connect, point){
   return connect.static(path.resolve(point));
@@ -8,6 +8,11 @@ var folderMount = function folderMount(connect, point){
 module.exports = function(grunt){
   grunt.initConfig({
     pkg:grunt.file.readJSON('package.json'),
+    bower: {
+      target: {
+        rjsConfig: 'app/js/main.js'
+      }
+    },
     mocha: {
       all: ['test/**/*.html'],
       options: {
@@ -61,11 +66,11 @@ module.exports = function(grunt){
       },
       compile_app: {
         files: ['app/**/*.coffee'],
-        tasks: ['coffee:app']
+        tasks: ['coffee:app', 'bower']
       },
       compile_test: {
         files: ['test/**/*.coffee'],
-        tasks: ['coffee:test']
+        tasks: ['coffee:test', 'bower']
       },
       sass: {
         files: ['**/*.scss'],
@@ -79,7 +84,7 @@ module.exports = function(grunt){
     connect: {
       livereload: {
         options: {
-          base: 'app/',
+          // base: '/',
           hostname: 'localhost',
           port: 9000,
           middleware: function(connect, options) {
@@ -99,11 +104,12 @@ module.exports = function(grunt){
     }
   });
 
+  grunt.loadNpmTasks('grunt-bower-requirejs')
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-mocha');
 
-  grunt.registerTask('default', ['coffee', 'connect', 'watch', 'mocha', 'sass']);
+  grunt.registerTask('default', ['coffee', 'connect', 'watch', 'mocha', 'sass', 'bower']);
 };

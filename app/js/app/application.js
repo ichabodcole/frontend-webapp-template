@@ -1,5 +1,5 @@
 (function() {
-  define(['lib/domReady', 'underscore', 'jquery', 'app/module'], function(domReady, _, $, myModule) {
+  define(['underscore', 'jquery', 'app/module'], function(_, $, myModule) {
     var MyApplication;
     return MyApplication = (function() {
       function MyApplication(module) {

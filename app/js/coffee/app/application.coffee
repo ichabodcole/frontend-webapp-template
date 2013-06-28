@@ -1,4 +1,4 @@
-define ['lib/domReady', 'underscore' ,'jquery', 'app/module'], (domReady, _, $, myModule)->
+define ['underscore' ,'jquery', 'app/module'], (_, $, myModule)->
   # console.log $
   class MyApplication
     constructor: (module)->
