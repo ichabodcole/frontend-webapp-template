@@ -1,25 +1,20 @@
   requirejs.config({
-    baseUrl: '../',
-
+    baseUrl: './',
     paths: {
-      lib: 'app/assets/js/lib',
-      app: 'app/assets/js/app',
-      spec: 'test/spec',
-
-      jquery: 'app/assets/js/lib/jquery',
-      underscore: 'app/assets/js/lib/underscore',
-
-      chai: 'node_modules/chai/chai',
-      mocha: 'node_modules/mocha/mocha',
-      bridge: 'node_modules/grunt-mocha/phantomjs/bridge'
+       app: '../app/js/app',
+       spec: 'spec',
+       jquery: '../components/jquery/jquery',
+       underscore: '../components/underscore/underscore',
+       chai: '../node_modules/chai/chai',
+       mocha: '../node_modules/mocha/mocha',
+       bridge: '../node_modules/grunt-mocha/phantomjs/bridge'
     },
-
     shim: {
-      'underscore': {
-        exports: '_'
-      }
+       underscore: {
+          exports: '_'
+       }
     }
-  });
+ });
 
   requirejs(['chai', 'mocha', 'bridge'], function(chai){
     expect = chai.expect;

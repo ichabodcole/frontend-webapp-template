@@ -11,6 +11,9 @@ module.exports = function(grunt){
     bower: {
       target: {
         rjsConfig: 'app/js/main.js'
+      },
+      test: {
+        rjsConfig: 'test/main.js'
       }
     },
     mocha: {
@@ -104,7 +107,7 @@ module.exports = function(grunt){
     }
   });
 
-  grunt.loadNpmTasks('grunt-bower-requirejs')
+  grunt.loadNpmTasks('grunt-bower-requirejs');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
