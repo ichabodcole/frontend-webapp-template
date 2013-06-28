@@ -1,0 +1,15 @@
+{
+  "name": "frontend-webapp-template",
+  "version": "0.0.1",
+  "main": "app/js/main.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "devDependencies": {
+    "requirejs": "~2.1.6",
+    "underscore": "~1.4.4",
+    "jquery": "~2.0.2"
+  }
+}
