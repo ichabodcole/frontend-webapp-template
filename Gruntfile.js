@@ -8,14 +8,6 @@ var folderMount = function folderMount(connect, point){
 module.exports = function(grunt){
   grunt.initConfig({
     pkg:grunt.file.readJSON('package.json'),
-    bower: {
-      target: {
-        rjsConfig: 'app/js/main.js'
-      },
-      test: {
-        rjsConfig: 'test/main.js'
-      }
-    },
     mocha: {
       all: ['test/**/*.html'],
       options: {
@@ -107,12 +99,11 @@ module.exports = function(grunt){
     }
   });
 
-  grunt.loadNpmTasks('grunt-bower-requirejs');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-mocha');
 
-  grunt.registerTask('default', ['coffee', 'connect', 'watch', 'mocha', 'sass', 'bower']);
+  grunt.registerTask('default', ['coffee', 'connect', 'watch', 'mocha', 'sass']);
 };
