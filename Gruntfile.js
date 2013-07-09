@@ -61,11 +61,11 @@ module.exports = function(grunt){
       },
       compile_app: {
         files: ['app/**/*.coffee'],
-        tasks: ['coffee:app', 'bower']
+        tasks: ['coffee:app']
       },
       compile_test: {
         files: ['test/**/*.coffee'],
-        tasks: ['coffee:test', 'bower']
+        tasks: ['coffee:test']
       },
       sass: {
         files: ['**/*.scss'],
