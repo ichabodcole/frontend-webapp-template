@@ -1,5 +1,5 @@
 {
-  "name": "frontend-webapp",
+  "name": "frontend-webapp-template",
   "version": "0.3.0",
   "description": "Template for JavaScrip Web Apps",
   "main": "apps/js/main.js",
