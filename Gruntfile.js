@@ -18,7 +18,7 @@ module.exports = function(grunt){
     sass: {
       dist: {
         files: {
-          'app/styles/main.css': 'app/styles/sass/main.scss'
+          'build/app/styles/main.css': 'app/styles/main.scss'
         }
       }
     },
@@ -27,9 +27,9 @@ module.exports = function(grunt){
         files: [
           {
             expand: true,
-            cwd: 'app/js/coffee',
+            cwd: 'app/scripts',
             src: ['**/*.coffee'],
-            dest: 'app/js',
+            dest: 'build/app/scripts',
             ext: '.js'
           }
         ]
@@ -79,7 +79,7 @@ module.exports = function(grunt){
     connect: {
       livereload: {
         options: {
-          // base: '/',
+          base: './build',
           hostname: 'localhost',
           port: 9000,
           middleware: function(connect, options) {
