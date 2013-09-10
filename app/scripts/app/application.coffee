@@ -1,8 +1,8 @@
-define ['underscore' ,'jquery', 'app/module'], (_, $, myModule)->
+define ['underscore' ,'jquery'], (_, $)->
   # console.log $
-  class MyApplication
-    constructor: (module)->
-      @module = new module()
+  class Application
+    constructor: (Module)->
+      @module = new Module()
       @helloMessage = "Hello Application"
       #example of non AMD module using underscore
       # _.each [0..5], (el, index)->
@@ -17,6 +17,8 @@ define ['underscore' ,'jquery', 'app/module'], (_, $, myModule)->
 
     start: ->
       @sayHello()
+
+  return Application;
 
   # domReady ->
   #   console.log "domReady"
