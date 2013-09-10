@@ -1,6 +1,6 @@
 {
   "name": "frontend-webapp-template",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Template for JavaScrip Web Apps",
   "main": "apps/js/main.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "chai": "~1.6.0",
     "mocha": "~1.9.0",
     "growl": "~1.7.0",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0"
   }
 }
