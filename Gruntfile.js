@@ -5,6 +5,8 @@ var folderMount = function folderMount(connect, point){
   return connect.static(path.resolve(point));
 };
 
+var buildDir = 'build/';
+
 module.exports = function(grunt){
   grunt.initConfig({
     pkg:grunt.file.readJSON('package.json'),
@@ -17,50 +19,66 @@ module.exports = function(grunt){
     },
     sass: {
       dist: {
-        files: {
-          'build/app/styles/main.css': 'app/styles/main.scss'
-        }
+        expand: true,
+        cwd: 'app/styles',
+        src: ['**/*.scss'],
+        dest: buildDir + 'styles',
+        ext: '.css'
+      }
+    },
+    clean: {
+      build: [buildDir]
+    },
+    copy: {
+      dist: {
+        expand: true,
+        cwd: 'app',
+        src: ['**/*', '!**/*.coffee', '!**/*.scss', '!bower_components/**'],
+        dest: buildDir
+      },
+      bower: {
+        expand: true,
+        cwd: 'app',
+        src: ['bower_components/**/*.js', 'bower_components/**/*.css'],
+        dest: buildDir
       }
     },
     coffee: {
       app: {
-        files: [
-          {
-            expand: true,
-            cwd: 'app/scripts',
-            src: ['**/*.coffee'],
-            dest: 'build/app/scripts',
-            ext: '.js'
-          }
-        ]
+        expand: true,
+        cwd: 'app/scripts',
+        src: ['**/*.coffee'],
+        dest: buildDir + 'scripts',
+        ext: '.js'
       },
       test: {
-        files: [
-          {
-            expand: true,
-            cwd: 'test/spec/coffee',
-            src: ['**/*.coffee'],
-            dest: 'test/spec',
-            ext: '.js'
-          }
-        ]
+        expand: true,
+        cwd: 'test/spec/coffee',
+        src: ['**/*.coffee'],
+        dest: 'test/spec',
+        ext: '.js'
       }
     },
     watch: {
-      livereload: {
-        files: [
-          'app/**/*.html',
-          'app/**/*.css',
-          'app/**/*.js',
-          'test/**/*.html',
-          'test/**/*.js'
-        ],
-        options: {
-          livereload: true
-        }
+      // livereload: {
+      //   files: [
+      //     buildDir + '**/*.html',
+      //     buildDir + '**/*.css',
+      //     buildDir + '**/*.js',
+      //     '!bower_components/**',
+      //     'test/**/*.html',
+      //     'test/**/*.js'
+      //   ],
+      //   options: {
+      //     livereload: true
+      //   },
+      // }
+      options: {
+        livereload: true
       },
+
       compile_app: {
-        files: ['app/**/*.coffee'],
+        files: ['app/**/*.coffee', '!app/bower_components/**'],
         tasks: ['coffee:app']
       },
       compile_test: {
@@ -68,8 +86,12 @@ module.exports = function(grunt){
         tasks: ['coffee:test']
       },
       sass: {
-        files: ['**/*.scss'],
+        files: ['**/*.scss', '!app/bower_components/**'],
         tasks: ['sass']
+      },
+      copy: {
+        files: ['app/**/*.html', '!app/bower_components/**'],
+        tasks: ['copy:dist']
       },
       test: {
         files: ['test/**/*.js', 'test/*.html'],
@@ -103,7 +125,17 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-mocha');
 
-  grunt.registerTask('default', ['coffee', 'connect', 'watch', 'mocha', 'sass']);
+  grunt.registerTask('default', [
+      'clean',
+      'coffee',
+      'connect',
+      'sass',
+      'copy',
+      'watch',
+      'mocha'
+    ]);
 };
