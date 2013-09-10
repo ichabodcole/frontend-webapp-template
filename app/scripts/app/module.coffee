@@ -1,5 +1,5 @@
 define ->
-  class MyModule
+  class Module
     constructor: ->
       @helloMessage = "Hello Module"
 
@@ -7,4 +7,4 @@ define ->
       console.log @helloMessage
       return @helloMessage
 
-  return MyModule
+  return Module
